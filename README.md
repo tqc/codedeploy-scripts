@@ -48,9 +48,9 @@ The below code will run /apps/deploytest/server.js on port 5000, with nginx as a
     var deployTools = require("codedeploy-scripts");
     class Deployment extends deployTools.Deployment {
         constructor() {
+            super();
             this.node = new deployTools.Node("deploytest", 5000, "server.js");
             this.nginx = new deployTools.Nginx(this.node, "deploytest.example.com");
-            super();
         }
         BeforeInstall() {
             this.node.stop();
