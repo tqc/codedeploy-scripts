@@ -1,0 +1,27 @@
+{
+    "author": "Tom Clarkson",
+    "name": "codedeploy-scripts",
+    "description": "AWS CodeDeploy lifecycle scripts using ES6 to deploy a node app to EC2",
+    "version": "0.0.1",
+    "keywords": ["AWS", "CodeDeploy", "EC2"],
+    "repository": {
+        "url": "http://github.com/tqc/codedeploy-scripts"
+    },
+    "main": "./src/index.js",
+    "scripts": {
+        "test": "eslint . && mocha"
+    },
+    "dependencies": {
+    },
+    "devDependencies": {
+        "babel-eslint": "*",
+        "eslint": "^1.0.0",
+        "eslint-config-defaults": "^3.1.0",
+        "chai": "*",
+        "mocha": "*"
+    },
+    "license": "MIT",
+    "engines": {
+        "node": ">=3.0.0"
+    }
+}
