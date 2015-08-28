@@ -1,3 +1,5 @@
+"use strict";
+
 
 class SimpleDeployment extends require("./deployment") {
     constructor(options) {
