@@ -5,11 +5,14 @@ var fs = require("fs");
 
 
 class Nginx {
-    constructor(node, domains) {
-        this.node = node;
+    constructor(options) {
+        var node = options.node;
         this.appName = node.appName;
-        this.domains = domains;
+        this.domains = options.domains;
         this.nodePort = node.port;
+        this.buildFolder = options.buildFolder || "build/prod/web";
+        this.staticFolder = options.buildFolder || "static";
+        this.useSSL = options.useSSL;
     }
     configure(options) {
 
@@ -18,6 +21,8 @@ class Nginx {
         var conf = fs.readFileSync(__dirname + "/nginx-app.conf", "utf-8")
         .replace(/__APPNAME__/ig, this.appName)
         .replace(/__DOMAINS__/ig, this.domains)
+        .replace(/__BUILDFOLDER__/ig, this.buildFolder)
+        .replace(/__STATICFOLDER__/ig, this.staticFolder)
         .replace(/__NODEPORT__/ig, this.nodePort);
 
         fs.writeFileSync(confpath, conf);

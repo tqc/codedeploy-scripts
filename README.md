@@ -44,26 +44,17 @@ Extends the deployment class with any custom actions needed on CodeDeploy lifecy
 The below code will run /apps/deploytest/server.js on port 5000, with nginx as a reverse proxy and serving static files on deploytest.example.com:80
 
     #!/usr/local/bin/node
-    "use strict";
-    var deployTools = require("codedeploy-scripts");
-    class Deployment extends deployTools.Deployment {
-        constructor() {
-            super();
-            this.node = new deployTools.Node("deploytest", 5000, "server.js");
-            this.nginx = new deployTools.Nginx(this.node, "deploytest.example.com");
-        }
-        BeforeInstall() {
-            this.node.stop();
-        }
-        AfterInstall() {
-            this.nginx.configure();
-        }
-        ApplicationStart() {
-            this.node.start();
-            this.nginx.reload();
-        }
-    }
-    new Deployment().run();
+    var deployment = new require("codedeploy-scripts").SimpleDeployment({
+        appName: "deploytest",
+        nodePort: "5000",
+        serverScript: "server.js",
+        domains: "deploytest.example.com",
+        buildFolder: "build",
+        staticFolder: "static"
+    });
+    deployment.run();
+
+For more complex scenarios, just create a custom subclass based on the implementation of SimpleDeployment.
 
 ## Assumptions
 
@@ -72,4 +63,4 @@ To keep things simple, the code makes a few assumptions.
 * The target is a standard Amazon Linux instance
 * io.js is installed as /usr/local/bin/node
 * The app will be installed to /apps/appname
-* static files are in /apps/appname/static and /apps/appname/built
+* static files are in /apps/appname/static and /apps/appname/build
