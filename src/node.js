@@ -30,7 +30,9 @@ class Node {
     }
     start() {
         // start node server
-        child.exec("export PORT=" + this.port + "; /usr/local/bin/node /apps/" + this.appName + "/" + this.scriptPath + " > /dev/null 2> /dev/null < /dev/null &", {});
+        child.exec("export PORT=" + this.port + "; /usr/local/bin/node /apps/" + this.appName + "/" + this.scriptPath + " > /dev/null 2> /dev/null < /dev/null &", {
+            cwd: "/apps/" + this.appName
+        });
     }
     stop() {
         if (!this.pid) {
