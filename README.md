@@ -43,7 +43,8 @@ Extends the deployment class with any custom actions needed on CodeDeploy lifecy
 
 The below code will run /apps/deploytest/server.js on port 5000, with nginx as a reverse proxy and serving static files on deploytest.example.com:80
 
-    #!/usr/local/bin/node
+    #!/usr/bin/env node
+    
     var SimpleDeployment = require("codedeploy-scripts").SimpleDeployment;
     var deployment = new SimpleDeployment({
         appName: "deploytest",
