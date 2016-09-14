@@ -15,10 +15,12 @@ class Nginx {
         this.useSSL = options.useSSL;
     }
     configure(options) {
+        var templatePath = __dirname + "/nginx-app.conf";
+        if (options.useSSL) templatePath = __dirname + "/nginx-app-secure.conf";
 
         var confpath = "/etc/nginx/conf.d/" + this.appName + ".conf";
 
-        var conf = fs.readFileSync(__dirname + "/nginx-app.conf", "utf-8")
+        var conf = fs.readFileSync(templatePath, "utf-8")
         .replace(/__APPNAME__/ig, this.appName)
         .replace(/__DOMAINS__/ig, this.domains)
         .replace(/__BUILDFOLDER__/ig, this.buildFolder)

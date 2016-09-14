@@ -2,7 +2,7 @@
   "author": "Tom Clarkson",
   "name": "codedeploy-scripts",
   "description": "AWS CodeDeploy lifecycle scripts using ES6 to deploy a node app to EC2",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "keywords": [
     "AWS",
     "CodeDeploy",
