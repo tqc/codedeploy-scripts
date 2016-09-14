@@ -14,9 +14,9 @@ class Nginx {
         this.staticFolder = options.buildFolder || "static";
         this.useSSL = options.useSSL;
     }
-    configure(options) {
+    configure() {
         var templatePath = __dirname + "/nginx-app.conf";
-        if (options.useSSL) templatePath = __dirname + "/nginx-app-secure.conf";
+        if (this.useSSL) templatePath = __dirname + "/nginx-app-secure.conf";
 
         var confpath = "/etc/nginx/conf.d/" + this.appName + ".conf";
 
