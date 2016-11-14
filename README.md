@@ -17,23 +17,23 @@ This tells CodeDeploy to copy everything to /apps/appname and run deployment.js 
     version: 0.0
     os: linux
     files:
-        + source: /
+        - source: /
           destination: /apps/appname
     hooks:
     #  ApplicationStop:
     #    - location: deployment.js
     #      timeout: 180
       BeforeInstall:
-        + location: deployment.js
+        - location: deployment.js
           timeout: 180
       AfterInstall:
-        + location: deployment.js
+        - location: deployment.js
           timeout: 180
       ApplicationStart:
-        + location: deployment.js
+        - location: deployment.js
           timeout: 180
       ValidateService:
-        + location: deployment.js
+        - location: deployment.js
           timeout: 180
 
 
