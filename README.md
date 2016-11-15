@@ -73,3 +73,7 @@ To keep things simple, the code makes a few assumptions.
 * The target is a standard Amazon Linux instance
 * node.js is installed
 * The app will be installed to /apps/appname
+
+A userdata script that will sufficiently configure a standard Amazon Linux instance can be found at https://github.com/tqc/ec2scripts/blob/master/userdata-app.sh
+
+Manual configuration is required for the security settings - the machine role will need the standard CodeDeploy access settings, plus access to the secrets bucket if used.
