@@ -4,6 +4,8 @@
 
 AWS CodeDeploy lifecycle scripts using ES6 to deploy a node app to EC2.
 
+See https://github.com/tqc/react-demo for a minimal working example.
+
 ## Usage
 
     npm install codedeploy-scripts
@@ -51,8 +53,14 @@ The below code will run /apps/deploytest/server.js on port 5000, with nginx as a
         nodePort: "5000",
         serverScript: "server.js",
         domains: "deploytest.example.com",
+        // files in these folders will be served from nginx without calling the node server
         buildFolder: "build",
-        staticFolder: "static"
+        staticFolder: "static",        
+        // files in s3 my-secret-bucket/deploytest will be copied to /apps/deploytest; suitable for ssh keys and
+        // config files which can't be part of the code deployment
+        secretBucket: "my-secret-bucket",
+        // if true, nginx will be set to serve https using /apps/deploytest/deploytest.[crt|key]
+        useSSL: false
     });
     deployment.run();
 
@@ -63,6 +71,5 @@ For more complex scenarios, just create a custom subclass based on the implement
 To keep things simple, the code makes a few assumptions.
 
 * The target is a standard Amazon Linux instance
-* io.js is installed as /usr/local/bin/node
+* node.js is installed
 * The app will be installed to /apps/appname
-* static files are in /apps/appname/static and /apps/appname/build
