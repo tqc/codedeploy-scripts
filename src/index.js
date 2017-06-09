@@ -3,5 +3,6 @@ module.exports = {
     Node: require("./node"),
     Nginx: require("./nginx"),
     Deployment: require("./deployment"),
-    SimpleDeployment: require("./simpledeployment")
+    SimpleDeployment: require("./simpledeployment"),
+    NodeDeployment: require("./nodedeployment"),
 };
